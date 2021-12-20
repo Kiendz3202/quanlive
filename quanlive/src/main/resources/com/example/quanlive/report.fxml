@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="855.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlive">
+    <children>
+        <Label layoutX="264.0" layoutY="14.0" prefHeight="39.0" prefWidth="269.0" text="THỐNG KÊ DOANH THU">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <DatePicker layoutX="496.0" layoutY="53.0" promptText="mm/dd/yyyy" />
+        <DatePicker layoutX="189.0" layoutY="53.0" promptText="mm/dd/yyyy" />
+        <Label layoutX="105.0" layoutY="58.0" text="Từ ngày" />
+        <Label layoutX="426.0" layoutY="58.0" text="Đến ngày" />
+        <Label layoutX="275.0" layoutY="167.0" prefHeight="39.0" prefWidth="269.0" text="THỐNG KÊ VÉ MÁY BAY">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <TextField layoutX="349.0" layoutY="94.0" prefHeight="31.0" prefWidth="207.0" />
+        <Label layoutX="264.0" layoutY="99.0" prefHeight="21.0" prefWidth="79.0" text="Doanh thu" />
+        <Label layoutX="105.0" layoutY="211.0" text="Nhập giá vé" />
+        <TextField layoutX="204.0" layoutY="206.0" />
+        <Label layoutX="40.0" layoutY="329.0" />
+        <Button layoutX="417.0" layoutY="206.0" mnemonicParsing="false" text="Search" />
+        <Button layoutX="744.0" layoutY="53.0" mnemonicParsing="false" text="Xem doanh thu" />
+        <TableView fx:id="table" layoutX="111.0" layoutY="310.0" prefHeight="470.0" prefWidth="717.0">
+            <columns>
+                <TableColumn fx:id="tenNguoiMuaColumn" prefWidth="119.0" text="Tên người mua" />
+                <TableColumn fx:id="soCMTColumn" prefWidth="62.0" text="Số CMT" />
+                <TableColumn fx:id="noiDiColumn" prefWidth="73.0" text="Nơi đi" />
+                <TableColumn fx:id="noiDenColumn" minWidth="0.0" prefWidth="88.0" text="Nơi đến" />
+                <TableColumn fx:id="quangDuongColumn" minWidth="0.0" prefWidth="118.0" text="Quãng đường" />
+                <TableColumn fx:id="ngayGioBayColumn" minWidth="0.0" prefWidth="102.0" text="Ngày giờ bay" />
+                <TableColumn fx:id="ngayBanVeColumn" minWidth="0.0" prefWidth="97.0" text="Ngày bán vé" />
+                <TableColumn fx:id="loaiVeColumn" minWidth="0.0" prefWidth="56.0" text="Loại vé" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
