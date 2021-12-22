@@ -11,7 +11,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="666.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlive.Controller">
+<AnchorPane fx:id="inputSearching" prefHeight="666.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlive.Controller">
     <children>
         <TableView fx:id="table" layoutX="23.0" layoutY="51.0" prefHeight="470.0" prefWidth="754.0">
             <columns>
@@ -42,7 +42,7 @@
         <TextField fx:id="quangDuongText" layoutX="934.0" layoutY="267.0" prefHeight="31.0" prefWidth="176.0" />
         <Button layoutX="1059.0" layoutY="535.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
         <Button layoutX="922.0" layoutY="535.0" mnemonicParsing="false" onAction="#add" text="Add" />
-        <Button layoutX="992.0" layoutY="535.0" mnemonicParsing="false" text="Edit" />
+        <Button layoutX="992.0" layoutY="535.0" mnemonicParsing="false" onAction="#edit" text="Edit" />
         <MenuBar prefHeight="32.0" prefWidth="408.0">
             <menus>
                 <Menu mnemonicParsing="false" text="TRANG CHỦ">
@@ -68,8 +68,8 @@
             </menus>
         </MenuBar>
         <Button layoutX="165.0" layoutY="550.0" mnemonicParsing="false" text="Search" />
-        <TextField layoutX="248.0" layoutY="550.0" />
-        <ComboBox fx:id="selectsearch" layoutX="448.0" layoutY="550.0" prefWidth="150.0" promptText="SELECT" />
+        <TextField fx:id="textSearch" layoutX="248.0" layoutY="550.0" />
+        <ComboBox fx:id="selectsearch" layoutX="448.0" layoutY="550.0" onAction="#typeSearch" prefWidth="150.0" promptText="SELECT" />
         <ComboBox fx:id="myComboBox" layoutX="934.0" layoutY="432.0" prefHeight="31.0" prefWidth="176.0" promptText="Chọn loại vé" />
     </children>
 </AnchorPane>

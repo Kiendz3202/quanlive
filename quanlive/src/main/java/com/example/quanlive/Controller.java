@@ -1,6 +1,8 @@
 package com.example.quanlive;
 
 
+import com.example.quanlive.search.SearchByName;
+import com.example.quanlive.search.Searcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,17 +69,20 @@ public class Controller implements Initializable {
     @FXML
     private ComboBox selectsearch;
 
+    @FXML
+    private TextField textSearch;
 
+
+    private TicketManager ticketManager = new TicketManager();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        VeMayBayList = FXCollections.observableArrayList(
-                new VeMayBay("Nguyen Cong Quyen",21,"Ha Noi","HCM",12.6,"12/2","13/3","Thuong Gia")
-        );
+        VeMayBayList = FXCollections.observableArrayList(ticketManager.getPlaneTickets());
+
         tenNguoiMuaColumn.setCellValueFactory(new PropertyValueFactory<VeMayBay,String>("tenNguoiMua"));
         soCMTColumn.setCellValueFactory(new PropertyValueFactory<VeMayBay,Integer>("soCMT"));
         noiDiColumn.setCellValueFactory(new PropertyValueFactory<VeMayBay,String>("noiDi"));
-        noiDenColumn.setCellValueFactory(new PropertyValueFactory<VeMayBay,String>("noDen"));
+        noiDenColumn.setCellValueFactory(new PropertyValueFactory<VeMayBay,String>("noiDen"));
         quangDuongColumn.setCellValueFactory(new PropertyValueFactory<VeMayBay,Double>("quangDuong"));
         ngayGioBayColumn.setCellValueFactory(new PropertyValueFactory<VeMayBay,String>("ngayGioBay"));
         ngayBanVeColumn.setCellValueFactory(new PropertyValueFactory<VeMayBay,String>("ngayBanVe"));
@@ -96,7 +101,27 @@ public class Controller implements Initializable {
     }
 
     // addition function
-    public void add (ActionEvent e){
+    public void add(ActionEvent e) {
+        VeMayBay newVeMayBay = new VeMayBay(tenNguoiMuaText.getText(), Integer.parseInt(soCMTText.getText()),
+                noiDiText.getText(), noiDenText.getText(), Double.parseDouble(quangDuongText.getText()),
+                ngayGioBayText.getText(), ngayBanVeText.getText(),
+                myComboBox.getSelectionModel().getSelectedItem() + "\n");
+
+        VeMayBayList.add(newVeMayBay);
+        ticketManager.addPlaneTicket(newVeMayBay);
+    }
+
+    //deletion function
+    public void delete (ActionEvent e){
+        VeMayBay selected = table.getSelectionModel().getSelectedItem();
+        VeMayBayList.remove(selected);
+    }
+    //edit function
+    public void edit(ActionEvent e){
+        VeMayBay selected = table.getSelectionModel().getSelectedItem();
+        System.out.println(selected);
+//        VeMayBayList.remove(selected);
+
         VeMayBay newVeMayBay = new VeMayBay();
         newVeMayBay.setTenNguoiMua(tenNguoiMuaText.getText());
         newVeMayBay.setSoCMT(Integer.parseInt(soCMTText.getText())); //Chuyen tu String ve Int, vi kieu nhap vao la String
@@ -111,36 +136,49 @@ public class Controller implements Initializable {
         VeMayBayList.add(newVeMayBay);
     }
 
-    //deletion function
-    public void delete (ActionEvent e){
-        VeMayBay selected = table.getSelectionModel().getSelectedItem();
-        VeMayBayList.remove(selected);
+    //edition function
+//    private VeMayBay vemaybay;
+//    @FXML
+//    public void onTableItemSelect(ActionEvent e){
+//        vemaybay = table.getSelectionModel().getSelectedItem();
+//        if(vemaybay!=null){
+//            tenNguoiMuaText.setText(vemaybay.getTenNguoiMua());
+//            soCMTText.setText(String.valueOf(vemaybay.getSoCMT()));//chuyen int ve STring
+//            noiDiText.setText(vemaybay.getNoiDi());
+//            noiDenText.setText(vemaybay.getNoiDen());
+//            quangDuongText.setText(String.valueOf(vemaybay.getQuangDuong()));
+//            ngayGioBayText.setText(vemaybay.getNgayGioBay());
+//            ngayBanVeText.setText(vemaybay.getNgayBanVe());
+//            loaiVeText.setText(vemaybay.getLoaiVe());
+//        }
+//    }
+//    public void edit(ActionEvent e){
+//        vemaybay.setTenNguoiMua(tenNguoiMuaText.getText());
+//        vemaybay.setSoCMT(Integer.parseInt(soCMTText.getText()));
+//        vemaybay.setNoiDi(noiDiText.getText());
+//        vemaybay.setNoiDen(noiDenText.getText());
+//        vemaybay.setQuangDuong(Double.parseDouble(quangDuongText.getText()));
+//        vemaybay.setNgayGioBay(ngayGioBayText.getText());
+//        vemaybay.setNgayBanVe(ngayBanVeText.getText());
+//        vemaybay.setLoaiVe(loaiVeText.getText());
+//    }
+
+    // TODO: Chú thích ở đây
+    // Các hàm thao tác với giao diện cũng cần tham chiếu lại cho ticketmanager để
+    // xử lý ví dụ như t đã sửa ở hàm add.
+
+    /**
+     * Khi bấm nút search chọn searcher thì phải setSearcher cho TicketManager
+     */
+    public void typeSearch(ActionEvent e){
+        SearchByName a = new SearchByName();
+        ticketManager.setSearcher(a);
     }
 
-    //edition function
-    private VeMayBay vemaybay;
-    @FXML
-    public void onTableItemSelect(){
-        vemaybay = table.getSelectionModel().getSelectedItem();
-        if(vemaybay!=null){
-            tenNguoiMuaText.setText(vemaybay.getTenNguoiMua());
-            soCMTText.setText(String.valueOf(vemaybay.getSoCMT()));//chuyen int ve STring
-            noiDiText.setText(vemaybay.getNoiDi());
-            noiDenText.setText(vemaybay.getNoiDen());
-            quangDuongText.setText(String.valueOf(vemaybay.getQuangDuong()));
-            ngayGioBayText.setText(vemaybay.getNgayGioBay());
-            ngayBanVeText.setText(vemaybay.getNgayBanVe());
-            loaiVeText.setText(vemaybay.getLoaiVe());
-        }
-    }
-    public void edit(ActionEvent e){
-        vemaybay.setTenNguoiMua(tenNguoiMuaText.getText());
-        vemaybay.setSoCMT(Integer.parseInt(soCMTText.getText()));
-        vemaybay.setNoiDi(noiDiText.getText());
-        vemaybay.setNoiDen(noiDenText.getText());
-        vemaybay.setQuangDuong(Double.parseDouble(quangDuongText.getText()));
-        vemaybay.setNgayGioBay(ngayGioBayText.getText());
-        vemaybay.setNgayBanVe(ngayBanVeText.getText());
-        vemaybay.setLoaiVe(loaiVeText.getText());
-    }
+    /**
+     * Khi search cụ thể thì dùng hàm search của TicketManager
+     */
+//    public void searching(ActionEvent e){
+//        ticketManager.search(textSearch.getText());
+//    }
 }

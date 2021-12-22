@@ -1,0 +1,3 @@
+Nguyen Cong Quyen,21,Ha Noi,HCM,12.6,12/2,13/3,Thuong Gia
+Nguyen Manh Kien,21,Hoai Duc,Berlin,52.6,12/2,13/3,Thuong Gia
+Nguyen Manh Tu,21,Hoai Duc,Berlin,52.6,12/2,13/3,Thuong Gia
